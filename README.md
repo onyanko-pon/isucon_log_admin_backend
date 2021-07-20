@@ -8,7 +8,6 @@ $ echo .env.default > .env
 build mysql container
 ```sh
 $ docker-compose up
-
 ```
 
 build express app
