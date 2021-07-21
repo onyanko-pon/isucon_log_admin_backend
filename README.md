@@ -2,7 +2,7 @@
 
 set env variable  to .env file
 ```
-$ echo .env.default > .env
+$ cat .env.default > .env
 ```
 
 build mysql container
