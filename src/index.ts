@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config()
 }
 
+import {Log} from './db/models'
 import express from 'express'
 const app: express.Express = express()
 app.use(express.json())
@@ -21,6 +22,19 @@ app.get('/hello', (req: express.Request, res: express.Response) => {
   res.json({
     message: "hello"
   })
+})
+
+// TODO /api以下を別ファイルに分ける
+// TODO /api/logs/:id
+
+app.get('/api/logs', async (req: express.Request, res: express.Response) => {
+  try {
+    const logs = await Log.findAll();
+    res.json({ logs })
+  } catch (e) {
+    console.log({ e })
+    res.status(500).json({message: e})
+  }
 })
 
 app.listen(PORT, () => {
