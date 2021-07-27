@@ -16,11 +16,8 @@ router.get('/logs/:id', async (req: express.Request, res: express.Response) => {
   const logId = req.params.id
   try {
     const log = await Log.findByPk(logId)
-    if (log === null){
-      res.status(404).send(`id=${logId}のlogは存在しません`)
-    } else {
-      res.json({ log })
-    }
+    if (log === null) return res.status(404).json(`id=${logId}のlogは存在しません`)
+    res.json({ log })
   } catch (e) {
     res.status(500).json({message: e})
   }
