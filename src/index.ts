@@ -3,13 +3,12 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config()
 }
 
-import {Log} from './db/models'
 import express from 'express'
 const app: express.Express = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT ?? 3000
-const router = require('./api/api')
+const router = require('./api/index')
 
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.header("Access-Control-Allow-Origin", "*");

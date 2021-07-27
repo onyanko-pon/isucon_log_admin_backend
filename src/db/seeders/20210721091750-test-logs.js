@@ -10,14 +10,5 @@ module.exports = {
       { name: 'test04', body: 'test-body04', createdAt: now, updatedAt: now },
       { name: 'test05', body: 'test-body05', createdAt: now, updatedAt: now }
     ], {});
-  },
-
-  // down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  // }
+  }
 };
