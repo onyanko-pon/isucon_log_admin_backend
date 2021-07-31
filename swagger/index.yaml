@@ -1,0 +1,56 @@
+openapi: "3.0.0"
+info:
+  title: "Isucon Log Admin"
+  description: "Isucon Log AdminのAPIです"
+  version: "1.0.0"
+  contact:
+    email: "example@gmail.com"
+
+paths:
+  /logs/{logId}:
+    get:
+      summary: "ログ取得API"
+      description: "指定されたlogの情報を返します"
+      parameters:
+      - name: "logId"
+        in: "path"
+        description: "取得したいログのID"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  log:
+                    $ref: '#/components/schemas/Log'
+
+components:
+  schemas:
+    Log:
+      type: object
+      required:
+        - id
+        - name
+        - body
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "John"
+        body:
+          type: string
+          example: ""
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
