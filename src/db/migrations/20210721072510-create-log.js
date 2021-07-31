@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('logs', {
@@ -13,6 +14,14 @@ module.exports = {
       },
       body: {
         type: Sequelize.TEXT
+      },
+      type: {
+        type: Sequelize.ENUM,
+        values: [
+          "none",
+          "nginx"
+        ],
+        defaultValue: "none"
       },
       createdAt: {
         allowNull: false,

@@ -1,5 +1,6 @@
 import path from 'path'
 import { Sequelize, Model, DataTypes } from 'sequelize'
+import { LogType } from '../../model/LogType'
 
 const basename = path.basename(__filename)
 const env = process.env.NODE_ENV || 'development';
@@ -17,6 +18,7 @@ class Log extends Model {
   public id!: number
   public name!: string
   public body!: string
+  public type!: LogType
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -32,6 +34,14 @@ Log.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    type: {
+      type: DataTypes.STRING,
+      values: [
+        "none",
+        "nginx"
+      ],
+      defaultValue: "none"
     },
     body: {
       type: DataTypes.STRING,
