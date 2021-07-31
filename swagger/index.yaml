@@ -7,6 +7,22 @@ info:
     email: "example@gmail.com"
 
 paths:
+  /logs:
+    get:
+      summary: "ログ取得API"
+      description: "logの一覧を返します"
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Log'
   /logs/{logId}:
     get:
       summary: "ログ取得API"
@@ -28,6 +44,12 @@ paths:
                 properties:
                   log:
                     $ref: '#/components/schemas/Log'
+        404:
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
@@ -53,4 +75,11 @@ components:
         createdAt:
           type: string
         updatedAt:
+          type: string
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
           type: string
