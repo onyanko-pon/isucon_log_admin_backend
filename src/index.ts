@@ -8,6 +8,7 @@ const app: express.Express = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT ?? 3000
+const router = require('./api/index')
 
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,12 +17,7 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
   next();
 })
 
-// TODO 消す
-app.get('/hello', (req: express.Request, res: express.Response) => {
-  res.json({
-    message: "hello"
-  })
-})
+app.use('/api', router)
 
 app.listen(PORT, () => {
   console.log(`Start on port ${PORT}`)
