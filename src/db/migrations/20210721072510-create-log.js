@@ -14,7 +14,7 @@ module.exports = {
       body: {
         type: Sequelize.TEXT
       },
-      // 外部キー
+      // 外部キー追加
       benchId: {
         allowNull: false,
         type: Sequelize.INTEGER

@@ -16,7 +16,9 @@ class Bench extends Model {
   public id!: number;
   public name!: string;
   
-  // 追加する
+  // 追加する（migrationも反映させる）
+  // comment
+  // score
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -24,7 +26,6 @@ class Bench extends Model {
   public createLog!: HasManyCreateAssociationMixin<Log>
 
   public static associations() {
-    // logs: Association<Bench, Log>;
     this.hasMany(Log, {
       sourceKey: 'id',
       foreignKey: 'benchId',
@@ -57,7 +58,7 @@ class Log extends Model {
   public name!: string
   public body!: string
 
-  // 外部キー
+  // 外部キー追加
   public benchId!: number;
 
   public readonly createdAt!: Date;
@@ -83,7 +84,7 @@ Log.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // 外部キー
+    // 外部キー追加
     benchId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
